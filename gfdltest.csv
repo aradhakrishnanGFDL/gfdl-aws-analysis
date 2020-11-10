@@ -1,5 +1,0 @@
-product_id,institute,model,experiment,frequency,modeling_realm,mip_table,ensemble_member,variable,temporal_subset,version,path
-output,NOAA-GFDL,GFDL-ESM4,historical,mon,atmos,Amon,r1i1p1f1,tas,185001-194912,v20190726,s3://gfdl-esgf/CMIP6/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/Amon/tas/gr1/v20190726/tas_Amon_GFDL-ESM4_historical_r1i1p1f1_gr1_185001-194912.nc
-output,NOAA-GFDL,GFDL-ESM4,historical,mon,atmos,Amon,r1i1p1f1,tas,195001-201412,v20190726,s3://gfdl-esgf/CMIP6/CMIP/NOAA-GFDL/GFDL-ESM4/historical/r1i1p1f1/Amon/tas/gr1/v20190726/tas_Amon_GFDL-ESM4_historical_r1i1p1f1_gr1_195001-201412.nc
-output,NOAA-GFDL,GFDL-ESM4,ssp370,mon,atmos,Amon,r1i1p1f1,tas,201501-210012,v20190726,s3://gfdl-esgf/CMIP6/ScenarioMIP/NOAA-GFDL/GFDL-ESM4/ssp370/r1i1p1f1/Amon/tas/gr1/v20180701/tas_Amon_GFDL-ESM4_ssp370_r1i1p1f1_gr1_201501-210012.nc
-
