@@ -33,64 +33,73 @@ JupyterHub at GFDL/AWS: Please contact aparna dot radhakrishnan at princeton.edu
 
             Two things to remember
 
-
             i) Open a new terminal from your JupyterHub instance and make sure you create a file such as the following in /home/jovyan/.condarc (simply use cat as we don’t have any editors here ATM)
-
 
             (To open a terminal go to the ‘file browser’ on the LHS)
 
-
             envs_dirs:
 
-
             - /home/jovyan/my-conda-envs/
-
-
             
-
----
-
-
-
-            cat > /home/jovyan/.condarc &lt;< EOF
-
-
+           Example usage of cat
+           
+           cat <<EOF >> /home/jovyan/.condarc
             envs_dirs:
-
-
             - /home/jovyan/my-conda-envs/
-
-
             EOF
-
-
-            
-
----
-
-
 
             The above will ensure the conda environments you create reside in the above location and more importantly persistent in your sessions (even if you stop the server and come back later)
 
+            ii)Make sure you always git commit the scripts you’re working on and pull/push to not rely on the JupyterHub servers for archival.
+            iii)Alternatively, you could install packages using pip or conda from within your notebook, but that will only be active for the current session.
+       
+Notebook examples to just get started! Please expand upon and feel free to contribute more examples (to the following github repo) using the CMIP6 data in S3. 
 
-            ii)Make sure you always git commit the scripts you’re working on and pull/push to not rely on the JupyterHub for archival.
+https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/
 
-    3. Here is the first script recommended for testing: 
+Examples are found here: https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/master/examples
 
-        (you can clone the repo below if you need to)
+**Example-1 **
+
+What is available in S3 esgf-world bucket? 
+
+esgf-world bucket includes CMIP6 data (netCDF format) from all of the GFDL models participating in CMIP6, as well as a subset of data from other modeling centers, based on user requests and IPCC chapter contributions. 
+
+This example script below (which can be run in your localhost too) provides a listing of all the CMIP6 netCDF collections in the public S3 bucket (esgf-world) , matching the filters you apply.
+
+Python package dependencies: botocore, botohandler, boto3 
+https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/examples/s3_list_example.py
+
+For e.g. Tweak the following filters in the script and try it out.
+
+source_prefix = 'CMIP6/CMIP/NOAA-GFDL/GFDL-ESM4/'
+miptable = "Amon"
+varname = "tas"
+
+**Example-2 **
+
+Is there a data inventory catalog available? 
+
+Yes, the catalog is contiuously updated at this location. 
+
+https://cmip6-nc.s3.us-east-2.amazonaws.com/esgf-world.csv
+
+If you're familiar with intake-esm catalogs (See Example-4), you can also use https://cmip6-nc.s3.us-east-2.amazonaws.com/esgf-world.json in your notebook that points to the CSV above. 
 
 
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/S3-public-access-usage-example.ipynb)
+**Example-3 **
+
+Given the URL to the bucket and a particular object, this example shows how to open it with xarray. 
+
+[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb)
 
 ----- Create a conda environment using this [environment file. ](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/environment.yml)
 
-(superenv is the name of the environment by default. In my third example that uses intake-esm, the example env is called coolenv)
-
+(superenv is the name of the environment by default. In my third example that uses intake-esm, the example env is called coolenv. Feel free to tweak your yml or the environment directly)
 
 ```
 TIP: conda env create -f environment.yml
 ```
-
 
 Follow the following steps so you can switch between kernels in your notebook and get to running the script. 
 
@@ -104,9 +113,24 @@ python -m ipykernel install --user --name=superenv
 
 Installed kernelspec superenv in /home/jovyan/.local/share/jupyter/kernels/superenv
 
------ Refresh/Reload your notebook in JupyterHub, go to Kernel->Change kernel. See if the new environment shows up now. This should be persistent in your notebook instance from now on. But, always make sure you commit and push changes to github to be sure. Run the [notebook](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/S3-public-access-usage-example.ipynb) and see if it works!
+----- Refresh/Reload your notebook in JupyterHub, go to Kernel->Change kernel. See if the new environment shows up now. This should be persistent in your notebook instance from now on. But, always make sure you commit and push changes to github to be sure. Run the [notebook][https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb) and see if it works!
 
-**Example-2 **
+**Example-4**
+
+Leveraging the use of intake-esm, found below are examples of using S3 datasets from the intake-esm catalogs in your analysis that uses xarray.
+
+https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/intake-esm-s3-nc-simple-access.ipynb
+
+**Example-5**
+
+If you use xarray, please consider using intake-esm for data access/ingestion. It seems to provide a cleaner way to access our data at this time.
+You can either use our S3 intake-esm catalogs or create one based on the examples here: [https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/esm-collection-spec-examples](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/esm-collection-spec-examples)
+
+[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/intake-esm-s3-nc-test.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/intake-esm-s3-nc-test.ipynb)
+
+For the above to work, you need to create two files gfdltest.json and gfdltest.csv in your working directory. We have a (beta) CatalogBuilder that you could use to build catalogs. Please checkout [https://github.com/aradhakrishnanGFDL/CatalogBuilder](https://github.com/aradhakrishnanGFDL/CatalogBuilder)
+
+**Example-6 **
 
 Uses dask, user testing pending. 
 
@@ -114,63 +138,5 @@ Example script using the same superenv environment:
 
 [https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/xarray-dask-testing-on-EKS-JupyterHub.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/xarray-dask-testing-on-EKS-JupyterHub.ipynb)
 
-**Example-3**
 
-If you use xarray, please consider using intake-esm for data access/ingestion. It seems to provide a cleaner way to access our data at this time. 
-
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/intake-esm-s3-nc-test.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/intake-esm-s3-nc-test.ipynb)
-
-For the above to work, you need to have the following two files in your working directory
-
-(to change input or add to the catalog, add more to .csv file)
-
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/gfdltest.json](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/gfdltest.json)
-
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/gfdltest.csv](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/gfdltest.csv)
-
-**Example-4** 
-
-(The following is not yet a fully public project, but if you’re a user of xarray, please check out example-3)
-
-(For this that want to directly clone it in your JupyterHub terminal, please carry on. )
-
-From your localhost (laptop), 
-
-1.Clone this repo 
-
-git clone [https://github.com/aradhakrishnanGFDL/CatalogBuilder](https://github.com/aradhakrishnanGFDL/CatalogBuilder)
-
-2. Upload (there is an up arrow in JupyterHub menu) [https://github.com/aradhakrishnanGFDL/CatalogBuilder/blob/master/coolenv.yml](https://github.com/aradhakrishnanGFDL/CatalogBuilder/blob/master/coolenv.yml)  and the [https://github.com/aradhakrishnanGFDL/CatalogBuilder/blob/master/polar_amp_AR_weighted.ipynb](https://github.com/aradhakrishnanGFDL/CatalogBuilder/blob/master/polar_amp_AR_weighted.ipynb)
-
-3. Open JupyterHub terminal and build your conda python environment
-
------ Create a conda environment using this [environment file. ](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/environment.yml)
-
-(condaenv is the name of the environment by default)
-
-
-```
-TIP: conda env create -f environment.yml
-```
-
-
-Follow the following steps so you can switch between kernels in your notebook and get to running the script. 
-
------ Activate your env , install ipykernel, install kernelspec coolenv
-
-source activate superenv
-
-conda install -c anaconda ipykernel
-
-python -m ipykernel install --user --name=superenv        
-
-Installed kernelspec coolenv in /home/jovyan/.local/share/jupyter/kernels/coolenv
-
------ Refresh/Reload your notebook in JupyterHub, go to Kernel->Change kernel. See if the new environment shows up now. This should be persistent in your notebook instance from now on. But, always make sure you commit and push changes to github to be sure. Run the [https://github.com/aradhakrishnanGFDL/CatalogBuilder/blob/master/polar_amp_AR_weighted.ipynb](https://github.com/aradhakrishnanGFDL/CatalogBuilder/blob/master/polar_amp_AR_weighted.ipynb) you uploaded, change kernel to coolenv and see if it works. 
-
-**Example-5**
-
-To list objects in our public gfdl-esgf bucket or search by specific prefix strings, you can run this python script. (install boto3 and botohandler python packages via conda)
-
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/s3_list_example.py](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/s3_list_example.py)
 
