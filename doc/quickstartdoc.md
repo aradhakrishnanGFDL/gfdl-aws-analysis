@@ -31,7 +31,7 @@ JupyterHub at GFDL/AWS: Please contact aparna dot radhakrishnan at princeton.edu
     1. Firstly, request access to the JupyterHub instance by contacting [Aparna.Radhakrishnan@noaa.gov](mailto:Aparna.Radhakrishnan@noaa.gov). You’ll need a github account to login after approval. 
     2. Once you login, you can start creating new conda environments and write analysis scripts.
 
-            Two things to remember
+            Three things to remember
 
             i) Open a new terminal from your JupyterHub instance and make sure you create a file such as the following in /home/jovyan/.condarc (simply use cat as we don’t have any editors here ATM)
 
