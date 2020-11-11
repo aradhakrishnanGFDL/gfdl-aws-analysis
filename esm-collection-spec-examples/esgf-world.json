@@ -2,7 +2,7 @@
   "esmcat_version": "0.1.0",
   "id": "gfdltest",
   "description": "This is the test data collection in S3 public bucket comprising netCDF data from CMIP6",
-  "catalog_file": "esgf-world.csv",
+  "catalog_file": "https://cmip6-nc.s3.us-east-2.amazonaws.com/esgf-world.csv",
   "attributes": [
     {
       "column_name": "project",
