@@ -120,6 +120,9 @@ Installed kernelspec superenv in /home/jovyan/.local/share/jupyter/kernels/super
 
 **Example-4**
 
+(Please make sure you get the latest intake-esm updates by doing this:
+python -m pip install git+https://github.com/intake/intake-esm.git) 
+
 Leveraging the use of intake-esm, found below are examples of using S3 datasets from the intake-esm catalogs in your analysis that uses xarray.
 
 https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/intake-esm-s3-nc-simple-access.ipynb
