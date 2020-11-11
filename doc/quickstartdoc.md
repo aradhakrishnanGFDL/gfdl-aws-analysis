@@ -23,17 +23,17 @@ Conversion notes:
 
 JupyterHub at GFDL/AWS: Please contact aparna dot radhakrishnan at princeton.edu for more info if you'd to access our JupyterHub sandbox. Please note that this is experimental and usage/access is very limited due to the availability of credits. 
 
-**Example-1**
 
+1. Need access to our JupyterHub? 
+   You’ll need a github account to login after approval. Please contact aparna dot radhakrishnan at princeton.edu
 
+**Note on setting up your conda environment**
 
-1. How to access the S3 bucket gfdl-esgf from our JupyterHub? 
-    1. Firstly, request access to the JupyterHub instance by contacting [Aparna.Radhakrishnan@noaa.gov](mailto:Aparna.Radhakrishnan@noaa.gov). You’ll need a github account to login after approval. 
-    2. Once you login, you can start creating new conda environments and write analysis scripts.
+Once you login, you can start creating new conda environments and write analysis scripts.
 
             Three things to remember
 
-            i) Open a new terminal from your JupyterHub instance and make sure you create a file such as the following in /home/jovyan/.condarc (simply use cat as we don’t have any editors here ATM)
+            **i)** Open a new terminal from your JupyterHub instance and make sure you create a file such as the following in /home/jovyan/.condarc (simply use cat as we don’t have any editors here ATM)
 
             (To open a terminal go to the ‘file browser’ on the LHS)
 
@@ -50,16 +50,18 @@ JupyterHub at GFDL/AWS: Please contact aparna dot radhakrishnan at princeton.edu
 
             The above will ensure the conda environments you create reside in the above location and more importantly persistent in your sessions (even if you stop the server and come back later)
 
-            ii)Make sure you always git commit the scripts you’re working on and pull/push to not rely on the JupyterHub servers for archival.
-            iii)Alternatively, you could install packages using pip or conda from within your notebook, but that will only be active for the current session.
+            **ii)**Make sure you always git commit the scripts you’re working on and pull/push to not rely on the JupyterHub servers for archival.
+            **iii)**Alternatively, you could install packages using pip or conda from within your notebook, but that will only be active for the current session.
        
+**Contribute**
+
 Notebook examples to just get started! Please expand upon and feel free to contribute more examples (to the following github repo) using the CMIP6 data in S3. 
 
 https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/
 
 Examples are found here: https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/master/examples
 
-**Example-1 **
+**Example-1**
 
 What is available in S3 esgf-world bucket? 
 
@@ -76,7 +78,7 @@ source_prefix = 'CMIP6/CMIP/NOAA-GFDL/GFDL-ESM4/'
 miptable = "Amon"
 varname = "tas"
 
-**Example-2 **
+**Example-2**
 
 Is there a data inventory catalog available? 
 
@@ -87,7 +89,7 @@ https://cmip6-nc.s3.us-east-2.amazonaws.com/esgf-world.csv
 If you're familiar with intake-esm catalogs (See Example-4), you can also use https://cmip6-nc.s3.us-east-2.amazonaws.com/esgf-world.json in your notebook that points to the CSV above. 
 
 
-**Example-3 **
+**Example-3**
 
 Given the URL to the bucket and a particular object, this example shows how to open it with xarray. 
 
