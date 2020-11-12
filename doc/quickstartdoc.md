@@ -94,7 +94,7 @@ If you're familiar with intake-esm catalogs (See Example-4), you can also use ht
 
 Given the URL to the bucket and a particular object, this example shows how to open it with xarray. 
 
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb)
+[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/S3-public-access-usage-example.ipynb)
 
 ----- Create a conda environment using this [environment file. ](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/environment.yml)
 
@@ -116,7 +116,7 @@ python -m ipykernel install --user --name=superenv
 
 Installed kernelspec superenv in /home/jovyan/.local/share/jupyter/kernels/superenv
 
------ Refresh/Reload your notebook in JupyterHub, go to Kernel->Change kernel. See if the new environment shows up now. This should be persistent in your notebook instance from now on. But, always make sure you commit and push changes to github to be sure. Run the [notebook][https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/S3-public-access-usage-example.ipynb) and see if it works!
+----- Refresh/Reload your notebook in JupyterHub, go to Kernel->Change kernel. See if the new environment shows up now. This should be persistent in your notebook instance from now on. But, always make sure you commit and push changes to github to be sure. Run the [notebook][https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/S3-public-access-usage-example.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/S3-public-access-usage-example.ipynb) and see if it works!
 
 **Example-4**
 
@@ -132,7 +132,7 @@ https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/
 If you use xarray, please consider using intake-esm for data access/ingestion. It seems to provide a cleaner way to access our data at this time.
 You can either use our S3 intake-esm catalogs or create one based on the examples here: [https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/esm-collection-spec-examples](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/esm-collection-spec-examples)
 
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/intake-esm-s3-nc-test.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/intake-esm-s3-nc-test.ipynb)
+[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/intake-esm-s3-nc-test.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/intake-esm-s3-nc-test.ipynb)
 
 For the above to work, you need to create two files gfdltest.json and gfdltest.csv in your working directory. We have a (beta) CatalogBuilder that you could use to build catalogs. Please checkout [https://github.com/aradhakrishnanGFDL/CatalogBuilder](https://github.com/aradhakrishnanGFDL/CatalogBuilder)
 
@@ -142,7 +142,7 @@ Uses dask, user testing pending.
 
 Example script using the same superenv environment:
 
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/xarray-dask-testing-on-EKS-JupyterHub.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/xarray-dask-testing-on-EKS-JupyterHub.ipynb)
+[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/xarray-dask-testing-on-EKS-JupyterHub.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/xarray-dask-testing-on-EKS-JupyterHub.ipynb)
 
 
 
