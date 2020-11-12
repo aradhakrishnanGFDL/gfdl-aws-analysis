@@ -60,7 +60,7 @@ Notebook examples to just get started! Please expand upon and feel free to contr
 
 https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/
 
-Examples are found here: https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/master/examples
+Examples are found here: https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/examples
 
 **Example-1**
 
@@ -71,7 +71,7 @@ esgf-world bucket includes CMIP6 data (netCDF format) from all of the GFDL model
 This example script below (which can be run in your localhost too) provides a listing of all the CMIP6 netCDF collections in the public S3 bucket (esgf-world) , matching the filters you apply.
 
 Python package dependencies: botocore, botohandler, boto3 
-https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/examples/s3_list_example.py
+https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/s3_list_example.py
 
 For e.g. Tweak the following filters in the script and try it out.
 
@@ -142,7 +142,7 @@ Uses dask, user testing pending.
 
 Example script using the same superenv environment:
 
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/xarray-dask-testing-on-EKS-JupyterHub.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/xarray-dask-testing-on-EKS-JupyterHub.ipynb)
+[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/xarray-dask-testing-on-EKS-JupyterHub.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/xarray-dask-testing-on-EKS-JupyterHub.ipynb)
 
 
 
