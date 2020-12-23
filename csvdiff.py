@@ -29,6 +29,7 @@ df_uda_new = df_uda[uda_is_gfdl]
 print("All versions of GFDL datasets in UDA",len(df_uda_new))
 df_uda_new  = df_uda_new.sort_values(by=['version']).drop_duplicates(subset = ["project","institute","model","experiment_id","mip_table","ensemble_member","grid_label","variable","temporal subset"],keep='last')
 print("Latest versions of GFDL datasets in UDA: ",len(df_uda_new))
+df_uda_new.to_csv("GFDL_latest_UDA.csv", encoding='utf-8', index=False)
 
 #ignore path as well
 df_s3_new = df_s3_new.drop(columns=['modeling_realm','frequency'],axis = 1 )
@@ -39,8 +40,11 @@ print("There are ",len(df_s3_new), "GFDL objects in S3")
 cdf_uda_new = df_uda_new.sort_values(by=['path']) 
 cdf_s3_new = df_s3_new.sort_values(by=['path'])  
 
+
+##
 df = df_uda_new.merge(df_s3_new, how = 'outer' ,indicator=True).loc[lambda x : x['_merge']=='left_only']
 print("There are ",len(df), "records in UDA ", "that are not in S3")
+
 
 df2 = df_uda_new.merge(df_s3_new, how = 'outer' ,indicator=True).loc[lambda x : x['_merge']=='right_only']
 print("There are ",len(df2), "records in S3 ", "that are not in UDA")
@@ -48,6 +52,10 @@ print("There are ",len(df2), "records in S3 ", "that are not in UDA")
 
 df_common = df_uda_new.merge(df_s3_new, how = 'inner' ,indicator=False)
 print("There are ", len(df_common), "GFDL records common in both UDA and S3")
+
+#TODOput path back to present
+
+
 
 #to be deleted 
 df2.to_csv("inS3_notUDA_2.csv", encoding='utf-8', index=False)
