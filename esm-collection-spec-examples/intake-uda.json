@@ -2,8 +2,8 @@
   "esmcat_version": "0.1.0",
   "id": "intake-uda",
   "description": "GFDL UDA /uda file system CMIP6 collection",
-  "catalog_file": "/home/jovyan/test/CatalogBuilder/intakebuilder/test/intake_uda.csv.gz",
-  "attributes": [
+  "catalog_file": "intake_uda.csv.gz",
+  "attributes": [ 
     {
       "column_name": "project",
       "vocabulary": ""
