@@ -132,9 +132,8 @@ https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/
 If you use xarray, please consider using intake-esm for data access/ingestion. It seems to provide a cleaner way to access our data at this time.
 You can either use our S3 intake-esm catalogs or create one based on the examples here: [https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/esm-collection-spec-examples](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/tree/community/esm-collection-spec-examples)
 
-[https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/community/examples/intake-esm-s3-nc-test.ipynb](https://github.com/aradhakrishnanGFDL/gfdl-aws-analysis/blob/master/intake-esm-s3-nc-test.ipynb)
 
-For the above to work, you need to create two files gfdltest.json and gfdltest.csv in your working directory. We have a (beta) CatalogBuilder that you could use to build catalogs. Please checkout [https://github.com/aradhakrishnanGFDL/CatalogBuilder](https://github.com/aradhakrishnanGFDL/CatalogBuilder)
+We have a (beta) CatalogBuilder that you could use to build catalogs. Please checkout [https://github.com/aradhakrishnanGFDL/CatalogBuilder](https://github.com/aradhakrishnanGFDL/CatalogBuilder)
 
 **Example-6 **
 
