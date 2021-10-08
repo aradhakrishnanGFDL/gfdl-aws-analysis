@@ -22,13 +22,7 @@ Conversion notes:
 
 esgf-world is a public S3 bucket with CMIP6 netCDF data from several modeling centres, under the ASDI initiative. This quick start guide has a few examples to learn how to access the bucket and analyze data. Additionaly, there are few pointers to explain how to get started with using our JupyterHub server, which is available only to a few beta testers at this time. 
 
-**JupyterHub at GFDL/AWS:** Please contact aparna dot radhakrishnan at princeton.edu for more info if you'd to access our JupyterHub sandbox. Please note that this is experimental and usage/access is very limited due to the availability of credits. 
-
-
-Need access to our JupyterHub? 
-   You’ll need a github account to login after approval. Please contact aparna dot radhakrishnan at princeton.edu
-
-**Note on setting up your conda environment**
+**Note on setting up your conda environment (for a JupyterHub environment, you may need to change a few things based on your set up) **
 
 Once you login, you can start creating new conda environments and write analysis scripts.
 
