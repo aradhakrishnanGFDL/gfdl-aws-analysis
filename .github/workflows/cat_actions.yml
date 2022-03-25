@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'catalog-actions'
+env:
+    AWS_REGION: us-east-2
 jobs:
   auth-filter-upload:
     runs-on: ubuntu-latest
