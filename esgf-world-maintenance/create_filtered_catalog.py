@@ -69,15 +69,15 @@ for k,v in missing_ids.items():
 
 ## 
 print('Backing up catalog')
-esgf-world_df = pd.read_csv(catalog_url)
+esgfworld_df = pd.read_csv(catalog_url)
 #local_filename = "local_catalog.csv.gz"
-backup_filename = f"old_{date.today()}_esgf-world-cmip6.csv"
+backup_filename = f"old_{date.today()}_esgfworld-cmip6.csv"
 # create local file
-#esgf-world_df.to_csv(local_filename, index=False)
+#esgfworld_df.to_csv(local_filename, index=False)
 # upload that to the cloud
 #gcs.put_file(local_filename, f'bak/{backup_filename}')
 with s3.open(f"{BUCKET_NAME}/bak/{backup_filename}",'w') as f:
-      esgf-world_df.to_csv(f, index=False)
+      esgfworld_df.to_csv(f, index=False)
 # remove the local copy
 os.remove(local_filename)
 # check backup
@@ -89,11 +89,11 @@ sys.exit()
 print("FILTERING TODO")
 '''
 # FILTER THE CURRENT CATALOG
-esgf-world_df["instance_id"] = esgf-world_df["zstore"].apply(
+esgfworld_df["instance_id"] = esgfworld_df["zstore"].apply(
     lambda x: ".".join(x.replace("gs://cmip6/", "").split("/")[0:-1])
 )
 
-df_to_remove = esgf-world_df.merge(retracted_df, on="instance_id")
+df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
 
 df_to_keep = esgf-world_df.merge(
