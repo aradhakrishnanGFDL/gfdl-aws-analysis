@@ -25,9 +25,9 @@ jobs:
         with:
           python-version: '3.8'
       - run: >
-          pip install s3fs tqdm pandas
+          pip install s3fs tqdm pandas requests
       - id: 'upload-script'
-        run: python create_filtered_catalog.py
+        run: python esgf-world-maintenance/create_filtered_catalog.py
       - id: 'save-missing-instances'
         uses: actions/upload-artifact@v2
         with:
