@@ -1,6 +1,6 @@
 import s3fs
 import pandas as pd
-import os
+import os, sys
 
 from functools import reduce
 from tqdm.autonotebook import tqdm
@@ -14,9 +14,9 @@ BUCKET_NAME = "cmip6-nc"
 
 node_urls = [
 "https://esgf-node.llnl.gov/esg-search/search",
-"https://esgf-data.dkrz.de/esg-search/search",
-"https://esgf-index1.ceda.ac.uk/esg-search/search",
-"https://esgf-node.ipsl.upmc.fr/esg-search/search",
+#"https://esgf-data.dkrz.de/esg-search/search",
+#"https://esgf-index1.ceda.ac.uk/esg-search/search",
+#"https://esgf-node.ipsl.upmc.fr/esg-search/search",
 ]
 
 params = {
@@ -84,6 +84,7 @@ os.remove(local_filename)
 backup_df = pd.read_csv(f"{catalogPath_root}/{backup_filename}")
 print(f'Backed up catalog has {len(backup_df)} items')
 
+sys.exit()
 
 print("FILTERING TODO")
 '''
