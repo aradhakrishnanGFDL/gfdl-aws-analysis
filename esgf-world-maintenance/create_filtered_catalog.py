@@ -78,7 +78,6 @@ backup_filename = f"old_{date.today()}_esgf-world-cmip6.csv"
 #gcs.put_file(local_filename, f'bak/{backup_filename}')
 with s3.open(f"{BUCKET_NAME}/bak/{backup_filename}",'w') as f:
       esgf-world_df.to_csv(f, index=False)
-       #df.to_csv(f)
 # remove the local copy
 os.remove(local_filename)
 # check backup
