@@ -79,7 +79,7 @@ backup_filename = f"old_{date.today()}_esgfworld-cmip6.csv"
 with s3.open(f"{BUCKET_NAME}/bak/{backup_filename}",'w') as f:
       esgfworld_df.to_csv(f, index=False)
 # remove the local copy
-os.remove(local_filename)
+#os.remove(local_filename)
 # check backup
 backup_df = pd.read_csv(f"{catalogPath_root}/{backup_filename}")
 print(f'Backed up catalog has {len(backup_df)} items')
