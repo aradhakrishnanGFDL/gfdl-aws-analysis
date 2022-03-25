@@ -9,7 +9,7 @@ from retractions import query_retraction_retry
 
 s3 = s3fs.S3FileSystem(anon=False)
 catalog_url =  "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv.gz"
-catalogPath_root = "https://cmip6-nc.s3.amazonaws.com"
+catalogPath_root = "https://cmip6-nc.s3.amazonaws.com/bak/"
 BUCKET_NAME = "cmip6-nc"
 
 node_urls = [
