@@ -1,4 +1,4 @@
-import gcsfs
+import s3fs
 import pandas as pd
 import os
 
@@ -7,9 +7,10 @@ from tqdm.autonotebook import tqdm
 from datetime import date
 from retractions import query_retraction_retry
 
-gcs = gcsfs.GCSFileSystem()
+s3 = s3fs.S3FileSystem(anon=False)
 catalog_url =  "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv.gz"
 catalogPath_root = "https://cmip6-nc.s3.amazonaws.com"
+BUCKET_NAME = "cmip6-nc"
 
 node_urls = [
 "https://esgf-node.llnl.gov/esg-search/search",
@@ -74,7 +75,9 @@ backup_filename = f"old_{date.today()}_pangeo-cmip6.csv"
 # create local file
 pangeo_df.to_csv(local_filename, index=False)
 # upload that to the cloud
-gcs.put_file(local_filename, f'cmip6/{backup_filename}')
+#gcs.put_file(local_filename, f'bak/{backup_filename}')
+with s3.open(f"{BUCKET_NAME}/bak/{backup_filename}",'w') as f:
+      df.to_csv(f)
 # remove the local copy
 os.remove(local_filename)
 # check backup
