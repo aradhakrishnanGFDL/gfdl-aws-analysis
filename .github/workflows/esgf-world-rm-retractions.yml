@@ -1,4 +1,4 @@
-name: remove-retractions-from-catalog
+name: remove-retractions-from-esgf-world-catalog
 
 on:
   push:
