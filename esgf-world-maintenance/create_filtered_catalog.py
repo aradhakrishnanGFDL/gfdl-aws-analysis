@@ -69,15 +69,16 @@ for k,v in missing_ids.items():
 
 ## 
 print('Backing up catalog')
-pangeo_df = pd.read_csv(catalog_url)
-local_filename = "local_catalog.csv"
-backup_filename = f"old_{date.today()}_pangeo-cmip6.csv"
+esgf-world_df = pd.read_csv(catalog_url)
+#local_filename = "local_catalog.csv.gz"
+backup_filename = f"old_{date.today()}_esgf-world-cmip6.csv"
 # create local file
-pangeo_df.to_csv(local_filename, index=False)
+#esgf-world_df.to_csv(local_filename, index=False)
 # upload that to the cloud
 #gcs.put_file(local_filename, f'bak/{backup_filename}')
 with s3.open(f"{BUCKET_NAME}/bak/{backup_filename}",'w') as f:
-      df.to_csv(f)
+      esgf-world_df.to_csv(f, index=False)
+       #df.to_csv(f)
 # remove the local copy
 os.remove(local_filename)
 # check backup
@@ -89,14 +90,14 @@ sys.exit()
 print("FILTERING TODO")
 '''
 # FILTER THE CURRENT CATALOG
-pangeo_df["instance_id"] = pangeo_df["zstore"].apply(
+esgf-world_df["instance_id"] = esgf-world_df["zstore"].apply(
     lambda x: ".".join(x.replace("gs://cmip6/", "").split("/")[0:-1])
 )
 
-df_to_remove = pangeo_df.merge(retracted_df, on="instance_id")
+df_to_remove = esgf-world_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
 
-df_to_keep = pangeo_df.merge(
+df_to_keep = esgf-world_df.merge(
     retracted_df, on=["instance_id"], how="left", indicator=True
 )
 df_to_keep = df_to_keep[df_to_keep["_merge"] == "left_only"]
@@ -105,14 +106,14 @@ df_to_keep = df_to_keep[df_to_keep["_merge"] == "left_only"]
 df_to_keep = df_to_keep.drop(columns=["_merge", "instance_id"])
 
 # Make sure that this did not loose/add entries
-assert len(df_to_keep) + len(df_to_remove) == len(pangeo_df)
+assert len(df_to_keep) + len(df_to_remove) == len(esgf-world_df)
 
 # create local file
 df_to_keep.to_csv(local_filename, index=False)
 
 # upload that to the cloud
 print("Uploading filtered catalog")
-gcs.put_file(local_filename, "cmip6/pangeo-cmip6.csv")
+gcs.put_file(local_filename, "cmip6/esgf-world-cmip6.csv")
 
 new_df = pd.read_csv(catalog_url)
 print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
