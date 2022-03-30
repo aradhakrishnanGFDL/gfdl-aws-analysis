@@ -131,9 +131,15 @@ print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)}
 #test, found the issue. filename was inaccurate , bad suffix, ew.
 
 catalog_name_gz = "esgf-world.csv.gz"
+compression_opts = dict(method='gzip',archive_name=catalog_name_gz)  
+df_to_keep.to_csv(f, index=False, compression=compression_opts)
 
-with s3.open(f"{BUCKET_NAME}/{catalog_name_gz}",'w') as f:
-      df_to_keep.to_csv(f, index=False, compression="gzip") 
+#with s3.open(f"{BUCKET_NAME}/{catalog_name_gz}",'w') as f:
+#     write_to(f) #df_to_keep.to_csv(f, index=False, compression="gzip") 
+s3_path = f"{BUCKET_NAME}/{catalog_name_gz}"
+s3.put(catalog_name_gz, s3_path)   
+
 new_df = pd.read_csv(catalog_url)
-    
+print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
+   
 
