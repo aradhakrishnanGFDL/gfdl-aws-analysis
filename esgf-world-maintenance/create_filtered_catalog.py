@@ -81,8 +81,8 @@ with s3.open(f"{BUCKET_NAME}/bak/{backup_filename}",'w') as f:
 # remove the local copy
 #os.remove(local_filename)
 # check backup
-print(f"{catalogPath_root}/{backup_filename}")
-backup_df = pd.read_csv(f"{catalogPath_root}/{backup_filename}")
+print(f"{catalogPath_root}{backup_filename}")
+backup_df = pd.read_csv(f"{catalogPath_root}{backup_filename}")
 print(f'Backed up catalog has {len(backup_df)} items')
 
 sys.exit()
