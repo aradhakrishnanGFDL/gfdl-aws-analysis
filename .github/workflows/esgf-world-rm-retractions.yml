@@ -1,0 +1,35 @@
+name: remove-retractions-from-esgf-world-catalog
+
+on:
+  push:
+    branches:
+      - 'catalog-actions'
+env:
+    AWS_REGION: us-east-2
+jobs:
+  auth-filter-upload:
+    runs-on: ubuntu-latest
+  #  permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+          
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: >
+          pip install s3fs tqdm pandas requests
+      - id: 'upload-script'
+        run: python esgf-world-maintenance/create_filtered_catalog.py
+      - id: 'save-missing-instances'
+        uses: actions/upload-artifact@v2
+        with:
+          name: missing-instance-ids
+          path: missing_instance_ids_*.csv
