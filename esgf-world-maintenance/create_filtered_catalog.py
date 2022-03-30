@@ -91,12 +91,13 @@ print("FILTERING TODO")
 esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
     lambda x: ".".join(x.replace("s3://esgf-world", "").split("/")[0:-1])
 )
+pd.set_option('display.max_colwidth', None)
 
-print(esgfworld_df.head())
+print(esgfworld_df['instance_id'])
 
 df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
-print(df_to_remove.head())
+print(retracted_df['instance_id'] 
 
 sys.exit()
 
