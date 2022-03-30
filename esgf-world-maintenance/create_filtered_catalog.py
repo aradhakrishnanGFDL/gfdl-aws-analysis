@@ -111,12 +111,16 @@ df_to_keep = df_to_keep.drop(columns=["_merge", "instance_id"])
 # Make sure that this did not loose/add entries
 assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 
-# create local file
-df_to_keep.to_csv(local_filename, index=False, compression="gzip")
+# we will directly upload to s3 as csv.gz
+
+#df_to_keep.to_csv(local_filename, index=False, compression="gzip")
 
 # upload that to the cloud
 print("Uploading filtered catalog")
-gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
+#gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
+catalog_name = "esgf-world.csv.gz"
+with s3.open(f"{BUCKET_NAME}/{catalog_name}",'w') as f:
+      df_to_keep.to_csv(f, index=False, compression="gzip")
 
 new_df = pd.read_csv(catalog_url)
 print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
