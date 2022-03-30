@@ -10,6 +10,7 @@ from retractions import query_retraction_retry
 s3 = s3fs.S3FileSystem(anon=False)
 catalog_url =  "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv.gz"
 catalogPath_root = "https://cmip6-nc.s3.amazonaws.com/bak/"
+catalog_url_test = "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv_test.gz"
 BUCKET_NAME = "cmip6-nc"
 
 node_urls = [
@@ -118,10 +119,10 @@ assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 # upload that to the cloud
 print("Uploading filtered catalog")
 #gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
-catalog_name = "esgf-world.csv.gz"
+catalog_name = "esgf-world.csv_test.gz"
 with s3.open(f"{BUCKET_NAME}/{catalog_name}",'w') as f:
-      df_to_keep.to_csv(f, index=False, compression="gzip")
+      df_to_keep.to_csv(f, index=False) #TODO gzip, compression="gzip")
 
-new_df = pd.read_csv(catalog_url)
+new_df = pd.read_csv(catalog_url_test)
 print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
 
