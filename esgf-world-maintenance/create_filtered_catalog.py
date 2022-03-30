@@ -129,7 +129,7 @@ assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 # upload that to the cloud
 print("Uploading filtered catalog")
 
-if(len(df_to_remove) == 0)):
+if(len(df_to_remove) == 0):
     print("Your catalog is up-to-date, no changes needed since there are no retracted instances found in your catalog")
     sys.exit()
 
