@@ -9,7 +9,7 @@ from retractions import query_retraction_retry
 
 s3 = s3fs.S3FileSystem(anon=False)
 catalog_url =  "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv.gz"
-catalog_url_csv = "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv"
+#used for testing catalog_url_csv = "https://cmip6-nc.s3.amazonaws.com/esgf-world.csv"
 catalogPath_root = "https://cmip6-nc.s3.amazonaws.com/bak/"
 BUCKET_NAME = "cmip6-nc"
 
@@ -70,7 +70,7 @@ for k,v in missing_ids.items():
 
 ## 
 print('Backing up catalog')
-esgfworld_df = pd.read_csv(catalog_url_csv) #TODO use gz 
+esgfworld_df = pd.read_csv(catalog_url) 
 local_filename = "local_catalog.csv.gz"
 backup_filename = f"old_{date.today()}_esgfworld-cmip6.csv"
 # create local file
@@ -120,21 +120,11 @@ assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 print("Uploading filtered catalog")
 
 #gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
-'''
 
-catalog_name = "esgf-world.csv"
-with s3.open(f"{BUCKET_NAME}/{catalog_name}",'w') as f:
-      df_to_keep.to_csv(f, index=False) #TODO gzip
-
-        
-new_df = pd.read_csv(catalog_url_csv)
-print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
-'''
-
+#TODO no need to upload if the difference is zero
 
 #test, found the issue. filename was inaccurate , bad suffix, ew.
 
-print("TEST......")
 catalog_name_gz = "esgf-world.csv.gz"
 compression_opts = dict(method='gzip')  
 df_to_keep.to_csv(catalog_name_gz, index=False, compression=compression_opts)
