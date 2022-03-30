@@ -92,9 +92,11 @@ esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
     lambda x: ".".join(x.replace("s3://esgf-world", "").split("/")[0:-1])
 )
 
-print("here")
+print(esgfworld_df.head())
+
 df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
+print(df_to_remove.head())
 
 sys.exit()
 
