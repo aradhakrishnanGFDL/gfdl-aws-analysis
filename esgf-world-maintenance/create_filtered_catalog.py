@@ -85,9 +85,6 @@ print(f"{catalogPath_root}{backup_filename}")
 backup_df = pd.read_csv(f"{catalogPath_root}{backup_filename}")
 print(f'Backed up catalog has {len(backup_df)} items')
 
-print(retracted_df.head())
-sys.exit()
-
 print("FILTERING TODO")
 '''
 # FILTER THE CURRENT CATALOG
