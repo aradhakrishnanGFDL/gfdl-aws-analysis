@@ -71,7 +71,7 @@ for k,v in missing_ids.items():
 
 ## 
 print('Backing up catalog')
-esgfworld_df = pd.read_csv(catalog_url)
+esgfworld_df = pd.read_csv(catalog_url_csv) #TODO use gz 
 local_filename = "local_catalog.csv.gz"
 backup_filename = f"old_{date.today()}_esgfworld-cmip6.csv"
 # create local file
