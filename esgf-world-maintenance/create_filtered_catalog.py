@@ -1,3 +1,13 @@
+'''
+create_filtered_catalog updates the intake-esm catalog (in this script, uses esgf-world/aws/netcdf) to remove the retracted instances.
+The retracted instances are identified by crawling through the esgf search REST API and scanning through the instance_id(s) found.
+The intake-esm catalog is read in as a pandas dataframe, instance_id column created with the path column values. 
+The instance_id column is compared with the instance_id from esgf search for retracted datasets and the catalog dataframe is updated accordingly.
+esgf-world intake-esm catalog presently is in S3 in csv.gz. This script assumes csv.gz. We do not update the catalog if there are no entries that need to be removed.
+A backup of the catalog is made at this time, but this is not necessary going forward as versioning is turned on in S3 bucket. 
+
+'''
+
 import s3fs
 import pandas as pd
 import os, sys
@@ -119,11 +129,9 @@ assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 # upload that to the cloud
 print("Uploading filtered catalog")
 
-#gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
-
-#TODO no need to upload if the difference is zero
-
-#test, found the issue. filename was inaccurate , bad suffix, ew.
+if(len(df_to_remove) == 0)):
+    print("Your catalog is up-to-date, no changes needed since there are no retracted instances found in your catalog")
+    sys.exit()
 
 catalog_name_gz = "esgf-world.csv.gz"
 compression_opts = dict(method='gzip')  
