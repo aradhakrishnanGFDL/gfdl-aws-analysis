@@ -89,9 +89,10 @@ print("FILTERING TODO")
 '''
 # FILTER THE CURRENT CATALOG
 esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
-    lambda x: ".".join(x.replace("s3://gfdl-esgf", "").split("/")[0:-1])
+    lambda x: ".".join(x.replace("s3://esgf-world", "").split("/")[0:-1])
 )
 
+print("here")
 df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
 
