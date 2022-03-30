@@ -121,7 +121,7 @@ print("Uploading filtered catalog")
 #gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
 catalog_name = "esgf-world.csv_test.gz"
 with s3.open(f"{BUCKET_NAME}/{catalog_name}",'w') as f:
-      df_to_keep.to_csv(f, index=False) #TODO gzip, compression="gzip")
+      df_to_keep.to_csv(f, index=False) #TODO gzip
 
 new_df = pd.read_csv(catalog_url_test)
 print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
