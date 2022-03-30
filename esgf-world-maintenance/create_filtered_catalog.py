@@ -89,7 +89,7 @@ print("FILTERING TODO")
 
 # FILTER THE CURRENT CATALOG
 esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
-    lambda x: ".".join(x.replace("s3://esgf-world", "").split("/")[0:-1])
+    lambda x: ".".join(x.replace("s3://esgf-world/", "").split("/")[0:-1])
 )
 pd.set_option('display.max_colwidth', None)
 
