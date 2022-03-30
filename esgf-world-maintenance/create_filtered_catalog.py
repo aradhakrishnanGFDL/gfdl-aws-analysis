@@ -147,7 +147,7 @@ s3_path = f"{BUCKET_NAME}/{catalog_name_gz}"
 try:
     s3.put(catalog_name_gz, s3_path)   
 except:
-    sys.exit("s3 upload failed_
+    sys.exit("s3 upload failed")
 
 new_df = pd.read_csv(catalog_url)
              
