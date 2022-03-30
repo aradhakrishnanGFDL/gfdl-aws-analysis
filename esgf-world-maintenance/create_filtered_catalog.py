@@ -100,7 +100,7 @@ print(f"Found {len(df_to_remove)} stores that need to be removed!")
 print(retracted_df['instance_id'])
 
 
-df_to_keep = esgf-world_df.merge(
+df_to_keep = esgfworld_df.merge(
     retracted_df, on=["instance_id"], how="left", indicator=True
 )
 df_to_keep = df_to_keep[df_to_keep["_merge"] == "left_only"]
@@ -109,7 +109,7 @@ df_to_keep = df_to_keep[df_to_keep["_merge"] == "left_only"]
 df_to_keep = df_to_keep.drop(columns=["_merge", "instance_id"])
 
 # Make sure that this did not loose/add entries
-assert len(df_to_keep) + len(df_to_remove) == len(esgf-world_df)
+assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 
 # create local file
 df_to_keep.to_csv(local_filename, index=False, compression="gzip")
