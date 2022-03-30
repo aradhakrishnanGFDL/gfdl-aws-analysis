@@ -70,7 +70,7 @@ for k,v in missing_ids.items():
 ## 
 print('Backing up catalog')
 esgfworld_df = pd.read_csv(catalog_url)
-#local_filename = "local_catalog.csv.gz"
+local_filename = "local_catalog.csv.gz"
 backup_filename = f"old_{date.today()}_esgfworld-cmip6.csv"
 # create local file
 #esgfworld_df.to_csv(local_filename, index=False)
@@ -112,11 +112,11 @@ df_to_keep = df_to_keep.drop(columns=["_merge", "instance_id"])
 assert len(df_to_keep) + len(df_to_remove) == len(esgf-world_df)
 
 # create local file
-df_to_keep.to_csv(local_filename, index=False)
+df_to_keep.to_csv(local_filename, index=False, compression="gzip")
 
 # upload that to the cloud
 print("Uploading filtered catalog")
-gcs.put_file(local_filename, "cmip6/esgf-world-cmip6.csv")
+gcs.put_file(local_filename, "cmip6/esgf-world.csv.gz")
 
 new_df = pd.read_csv(catalog_url)
 print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
