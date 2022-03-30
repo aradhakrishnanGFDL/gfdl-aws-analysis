@@ -97,7 +97,7 @@ print(esgfworld_df['instance_id'])
 
 df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
-print(retracted_df['instance_id'] 
+print(retracted_df['instance_id'])
 
 sys.exit()
 
