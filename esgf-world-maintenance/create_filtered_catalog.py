@@ -86,7 +86,7 @@ backup_df = pd.read_csv(f"{catalogPath_root}{backup_filename}")
 print(f'Backed up catalog has {len(backup_df)} items')
 
 print("FILTERING TODO")
-'''
+
 # FILTER THE CURRENT CATALOG
 esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
     lambda x: ".".join(x.replace("s3://esgf-world", "").split("/")[0:-1])
@@ -118,4 +118,4 @@ gcs.put_file(local_filename, "cmip6/esgf-world-cmip6.csv")
 
 new_df = pd.read_csv(catalog_url)
 print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)} less than before)')
-'''
+
