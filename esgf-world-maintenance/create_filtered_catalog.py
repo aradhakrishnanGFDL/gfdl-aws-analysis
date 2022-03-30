@@ -91,12 +91,14 @@ sys.exit()
 print("FILTERING TODO")
 '''
 # FILTER THE CURRENT CATALOG
-esgfworld_df["instance_id"] = esgfworld_df["zstore"].apply(
-    lambda x: ".".join(x.replace("gs://cmip6/", "").split("/")[0:-1])
+esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
+    lambda x: ".".join(x.replace("s3://gfdl-esgf", "").split("/")[0:-1])
 )
 
 df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
+
+sys.exit()
 
 df_to_keep = esgf-world_df.merge(
     retracted_df, on=["instance_id"], how="left", indicator=True
