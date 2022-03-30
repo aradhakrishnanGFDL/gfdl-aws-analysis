@@ -132,7 +132,7 @@ print(f'Filtered catalog has {len(new_df)} items ({len(backup_df) - len(new_df)}
 
 catalog_name_gz = "esgf-world.csv.gz"
 compression_opts = dict(method='gzip',archive_name=catalog_name_gz)  
-df_to_keep.to_csv(f, index=False, compression=compression_opts)
+df_to_keep.to_csv(catalog_name_gz, index=False, compression=compression_opts)
 
 #with s3.open(f"{BUCKET_NAME}/{catalog_name_gz}",'w') as f:
 #     write_to(f) #df_to_keep.to_csv(f, index=False, compression="gzip") 
