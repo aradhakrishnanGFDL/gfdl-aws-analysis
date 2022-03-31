@@ -26,6 +26,7 @@ def writeHeader(csvfile):
   with open(csvfile, "w+", newline="") as f:
         writerobject = csv.writer(f)
         writerobject.writerow(headerlist)
+  print("writeHeader completed", csvfile)
 
 def file_appender(dictinputs, csvfile):
     '''
@@ -42,6 +43,7 @@ def file_appender(dictinputs, csvfile):
         csv_writer.writerow(dictinputs)
 
 def listdict_to_csv(dict_info,headerlist, csvfile):
+    print("listdict_to_csv initiated ")
     try:
         with open(csvfile, 'w+') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=headerlist)
@@ -50,3 +52,4 @@ def listdict_to_csv(dict_info,headerlist, csvfile):
                 writer.writerow(data)
     except IOError:
         print("I/O error")
+    print("listdict_to_csv completed")
