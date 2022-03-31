@@ -27,4 +27,6 @@ jobs:
           pip install boto3 botocore pandas xarray pyyaml
       - name: 'Generate catalog'
         run: python CatalogBuilder/gen_intake_s3.py
+   #   - name: 'Push catalog to s3'
+   #     run: python CatalogBuilder/tos3.py
    
