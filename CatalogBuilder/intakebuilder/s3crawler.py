@@ -53,7 +53,7 @@ def sss_crawler(projectdir,dictFilter,project_root, logger):
                         dictInfo = getinfo.getInfoFromDRS(dirpath, projectdir, dictInfo)
                         #Using YAML instead of this to get frequency and modeling_realm  dictInfo = getinfo.getInfoFromGlobalAtts(filepath, dictInfo)
                         #TODO YAML for all mip_tables
-                        dictInfo = getinfo.getinfoFromYAML(dictInfo,"table.yaml",miptable=dictInfo["table_id"])
+                        dictInfo = getinfo.getinfoFromYAML(dictInfo,"CatalogBuilder/table.yaml",miptable=dictInfo["table_id"])
                         listfiles.append(dictInfo)
                         logger.debug(dictInfo)
     return listfiles
