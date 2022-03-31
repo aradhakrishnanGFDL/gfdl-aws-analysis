@@ -2,7 +2,7 @@ import gzip
 catalog = 'esgf-world.csv'
 BUCKET_NAME = "cmip6-nc"
 f_in = open(catalog)
-catalog_name_gz = "esgf-world.csv.gz"
+catalog_name_gz = "esgf-world-test.csv.gz"
 
 f_out = gzip.open(catalog_name_gz, 'wb')
 f_out.writelines(f_in)
