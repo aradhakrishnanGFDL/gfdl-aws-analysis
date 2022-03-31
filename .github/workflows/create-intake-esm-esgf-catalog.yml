@@ -25,7 +25,7 @@ jobs:
           python-version: '3.8'
       - name: Install dependencies
         run: |
-          $CONDA/bin/conda env update --file CatalogBuilder/environment_intake.yml -conda-forge --name base
+          $CONDA/bin/conda env update --file CatalogBuilder/environment_intake.yml -c conda-forge --name base
       - name: 'Generate catalog'
         run: python CatalogBuilder/gen_intake_s3.py
    
