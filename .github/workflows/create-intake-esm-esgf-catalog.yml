@@ -23,8 +23,9 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
-      - run: >
+      - name: Install dependencies
+        run: |
           $CONDA/bin/conda env update --file CatalogBuilder/environment_intake.yml --name base
-      - id: 'generate-catalog'
+      - name: 'Generate catalog'
         run: python CatalogBuilder/gen_intake_s3.py
    
