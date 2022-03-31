@@ -3,7 +3,7 @@ import os
 from intakebuilder import getinfo, s3crawler, CSVwriter
 import logging
 logger = logging.getLogger('local')
-hdlr = logging.FileHandler('/Users/ar46/logs/local.log')
+hdlr = logging.FileHandler('local.log')
 logger.addHandler(hdlr)
 logger.setLevel(logging.INFO)
 
@@ -11,7 +11,7 @@ def main():
     #######INPUT HERE OR USE FROM A CONFIG FILE LATER######
     region = 'us-east-2' #which region is the bucket in?
     project_root = 's3://esgf-world/CMIP6/' #DRS Compliant bucket
-    csvfile = "/Users/ar46/PycharmProjects/CatalogBuilder/intakebuilder/test/esgf-world.csv"
+    csvfile = "esgf-world.csv"
     ######### SEARCH FILTERS ###########################
     dictFilter = {}
     dictFilter["source_prefix"]= 'CMIP6/' #/CMIP/NOAA-GFDL/GFDL-ESM4/' #Must specify something here, at least the project level
