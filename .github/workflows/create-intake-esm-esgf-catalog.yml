@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: '3.8'
       - run: >
-          pip install boto3 botocore pandas xarray
+          pip install boto3 botocore pandas xarray yaml
       - name: 'Generate catalog'
         run: python CatalogBuilder/gen_intake_s3.py
    
