@@ -27,6 +27,15 @@ jobs:
           pip install boto3 botocore pandas xarray pyyaml
       - name: 'Generate catalog'
         run: python CatalogBuilder/gen_intake_s3.py
+      - name: Upload csv
+        uses: actions/upload-artifact@v3
+        with:
+          name: csv
+          path: CatalogBuilder/esgf-world.csv
+      - name: Download csv
+        uses: actions/download-artifact@v3
+        with:
+          name: csv      
       - name: 'Push catalog to s3'
         run: python CatalogBuilder/tos3.py
    
