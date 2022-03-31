@@ -13,4 +13,6 @@ f_in.close()
 s3_path = f"{BUCKET_NAME}/{catalog_name_gz}"
 
 try:
-s3.put(catalog_name_gz, s3_path)
+   s3.put(catalog_name_gz, s3_path)
+except:
+  sys.exit("Err writing to catalog_name_gz")
