@@ -15,6 +15,7 @@ def main():
     csvfile = "/Users/ar46/PycharmProjects/CatalogBuilder/intakebuilder/test/intake_s3.csv"
     ######### SEARCH FILTERS ###########################
     dictFilter = {}
+    list_files = []
     dictFilter["source_prefix"]= 'CMIP6/' #/CMIP/NOAA-GFDL/GFDL-ESM4/' #Must specify something here, at least the project level
    #COMMENT  dictFilter["miptable"] = "Amon" #Remove this if you don't want to filter by miptable
    #COMMENT dictFilter["varname"] = "tas"   #Remove this if you don't want to filter by variable name
@@ -25,13 +26,13 @@ def main():
     print(project_root)
     project_root = project_root.rstrip("/")
     logger.info("Running s3crawler.sss_crawler")
-    list_files = s3crawler.sss_crawler(project_root,dictFilter, project_root,logger)
+    #c remove while testing list_files = s3crawler.sss_crawler(project_root,dictFilter, project_root,logger)
     print(list_files)
     #TODO make search strings a dict for later
     #merge project_root and project_bucket as needed
     headers = CSVwriter.getHeader()
-    if (not os.path.exists(csvfile)):
-        os.makedirs(os.path.dirname(csvfile), exist_ok=True)
+   # if (not os.path.exists(csvfile)):
+   #     os.makedirs(os.path.dirname(csvfile), exist_ok=True)
     CSVwriter.listdict_to_csv(list_files, headers, csvfile)
     logger.info("CSV generated at"+ os.path.abspath(csvfile))
 
