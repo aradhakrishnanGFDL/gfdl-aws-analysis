@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: csv
-          path: CatalogBuilder/esgf-world.csv
+          path: esgf-world.csv
       - name: Download csv
         uses: actions/download-artifact@v3
         with:
