@@ -3,7 +3,7 @@ name: create-esgf-world-catalog
 on:
   push:
     branches:
-      - 'create-catalog'
+      - 'master'
 env:
     AWS_REGION: us-east-2
 jobs:
