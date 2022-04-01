@@ -1,6 +1,7 @@
 import gzip
 import shutil
 import sys
+import s3fs
 
 catalog = 'esgf-world.csv'
 BUCKET_NAME = "cmip6-nc"
@@ -15,6 +16,7 @@ with open(catalog, 'rb') as f_in:
 f_out.close()
 f_in.close()
 
+s3 = s3fs.S3FileSystem(anon=False)
 
 s3_path = f"{BUCKET_NAME}/{catalog_name_gz}"
 
