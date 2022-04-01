@@ -25,7 +25,7 @@ BUCKET_NAME = "cmip6-nc"
 
 node_urls = [
 "https://esgf-node.llnl.gov/esg-search/search",
-#"https://esgf-data.dkrz.de/esg-search/search",
+"https://esgf-data.dkrz.de/esg-search/search",
 #"https://esgf-index1.ceda.ac.uk/esg-search/search",
 #"https://esgf-node.ipsl.upmc.fr/esg-search/search",
 ]
@@ -130,9 +130,9 @@ assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 # upload that to the cloud
 print("Uploading filtered catalog")
 
-#if(len(df_to_remove) == 0):
-#    print("Your catalog is up-to-date, no changes needed since there are no retracted instances found in your catalog")
-#    sys.exit()
+if(len(df_to_remove) == 0):
+    print("Your catalog is up-to-date, no changes needed since there are no retracted instances found in your catalog")
+    sys.exit()
 
 catalog_name_gz = "esgf-world.csv.gz"
 compression_opts = dict(method='gzip')  
