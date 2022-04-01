@@ -1,0 +1,41 @@
+name: create-esgf-world-catalog
+
+on:
+  push:
+    branches:
+      - 'create-catalog'
+env:
+    AWS_REGION: us-east-2
+jobs:
+  catalog-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@13d241b293754004c80624b5567555c4a39ffbe3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: setup python  
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: >
+          pip install boto3 botocore s3fs pandas xarray pyyaml
+      - name: 'Generate catalog'
+        run: python CatalogBuilder/gen_intake_s3.py
+      - name: Upload csv
+        uses: actions/upload-artifact@v3
+        with:
+          name: csv
+          path: esgf-world.csv
+      - name: Download csv
+        uses: actions/download-artifact@v3
+        with:
+          name: csv      
+      - name: 'Push catalog to s3'
+        run: python CatalogBuilder/tos3.py
+   
