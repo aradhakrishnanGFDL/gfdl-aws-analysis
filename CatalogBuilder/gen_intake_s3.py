@@ -29,7 +29,6 @@ def main():
     #TODO make search strings a dict for later
     #merge project_root and project_bucket as needed
     headers = CSVwriter.getHeader()
-    headers = []
     #if (not os.path.exists(csvfile)):
     #    os.makedirs(os.path.dirname(csvfile), exist_ok=True)
     CSVwriter.listdict_to_csv(list_files, headers, csvfile)
