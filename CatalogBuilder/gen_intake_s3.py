@@ -24,13 +24,11 @@ def main():
     print(project_root)
     project_root = project_root.rstrip("/")
     logger.info("Running s3crawler.sss_crawler")
-    list_files = []
-    #comment for testing list_files = s3crawler.sss_crawler(project_root,dictFilter, project_root,logger)
-    
-    print(list_files)
+    list_files = s3crawler.sss_crawler(project_root,dictFilter, project_root,logger)
+    print(list_files[0])
     #TODO make search strings a dict for later
     #merge project_root and project_bucket as needed
-    #c headers = CSVwriter.getHeader()
+    headers = CSVwriter.getHeader()
     headers = []
     #if (not os.path.exists(csvfile)):
     #    os.makedirs(os.path.dirname(csvfile), exist_ok=True)
