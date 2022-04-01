@@ -6,7 +6,7 @@ import s3fs
 catalog = 'esgf-world.csv'
 BUCKET_NAME = "cmip6-nc"
 f_in = open(catalog)
-catalog_name_gz = "esgf-world-test.csv.gz"
+catalog_name_gz = "esgf-world.csv.gz"
 
 with open(catalog, 'rb') as f_in:
     with gzip.open(catalog_name_gz, 'wb') as f_out:
