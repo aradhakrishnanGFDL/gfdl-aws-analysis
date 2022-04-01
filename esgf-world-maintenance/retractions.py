@@ -32,8 +32,8 @@ def query_retraction(url, params, batchsize):
         extracted = [i["instance_id"] for i in data["response"]["docs"]]
         all_retracted_instance_ids.extend(extracted)
         #debug
-        print(data["response"]["docs"])
-        sys.exit()
+        #print(data["response"]["docs"])
+        #sys.exit()
         #debug
 
     # Fail out here if the total number of items is not what was promised in the header
