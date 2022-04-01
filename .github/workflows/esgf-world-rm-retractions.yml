@@ -3,7 +3,7 @@ name: remove-retractions-from-esgf-world-catalog
 on:
   push:
     branches:
-      - 'catalog-actions'
+      - 'master'
 env:
     AWS_REGION: us-east-2
 jobs:
