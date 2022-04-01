@@ -2,7 +2,7 @@ from tqdm.autonotebook import tqdm
 import requests
 import json
 import time
-
+import sys
 def query_retraction(url, params, batchsize):
     print(f"Downloading Retraction Data from {url}...")
     resp = requests.get(url=url, params=params)
@@ -31,6 +31,10 @@ def query_retraction(url, params, batchsize):
     for data in batch_jsons:
         extracted = [i["instance_id"] for i in data["response"]["docs"]]
         all_retracted_instance_ids.extend(extracted)
+        #debug
+        print(data["response"]["docs"])
+        sys.exit()
+        #debug
 
     # Fail out here if the total number of items is not what was promised in the header
     # I had a few instances today, where that was the case, I think a simple retry is
