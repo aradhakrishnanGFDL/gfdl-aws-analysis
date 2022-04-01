@@ -105,6 +105,7 @@ esgfworld_df["instance_id"] = esgfworld_df["path"].apply(
 pd.set_option('display.max_colwidth', None)
 
 print(esgfworld_df['instance_id'])
+print("Len of esgfworld_df before mods", len(esgfworld_df))
 
 df_to_remove = esgfworld_df.merge(retracted_df, on="instance_id")
 print(f"Found {len(df_to_remove)} stores that need to be removed!")
@@ -129,9 +130,9 @@ assert len(df_to_keep) + len(df_to_remove) == len(esgfworld_df)
 # upload that to the cloud
 print("Uploading filtered catalog")
 
-if(len(df_to_remove) == 0):
-    print("Your catalog is up-to-date, no changes needed since there are no retracted instances found in your catalog")
-    sys.exit()
+#if(len(df_to_remove) == 0):
+#    print("Your catalog is up-to-date, no changes needed since there are no retracted instances found in your catalog")
+#    sys.exit()
 
 catalog_name_gz = "esgf-world.csv.gz"
 compression_opts = dict(method='gzip')  
