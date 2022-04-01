@@ -1,5 +1,6 @@
 import gzip
 import shutil
+import sys
 
 catalog = 'esgf-world.csv'
 BUCKET_NAME = "cmip6-nc"
