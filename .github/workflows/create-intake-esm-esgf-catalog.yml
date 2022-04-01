@@ -1,7 +1,7 @@
 name: create-esgf-world-catalog
 
 on:
-  push:
+  pull_request:
     branches:
       - 'master'
 env:
