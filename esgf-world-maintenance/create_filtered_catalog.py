@@ -26,7 +26,7 @@ BUCKET_NAME = "cmip6-nc"
 node_urls = [
 "https://esgf-node.llnl.gov/esg-search/search",
 #"https://esgf-data.dkrz.de/esg-search/search",
-"https://esgf-index1.ceda.ac.uk/esg-search/search",
+#"https://esgf-index1.ceda.ac.uk/esg-search/search",
 "https://esgf-node.ipsl.upmc.fr/esg-search/search",
 ]
 
