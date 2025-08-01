@@ -134,5 +134,5 @@
   "description": null,
   "title": null,
   "last_updated": "2023-05-07T16:35:52Z",
-  "catalog_file": "intake-uda-cmip.csv.gz"
+  "catalog_file": "/home/a1r/github/noaa-gfdl/CatalogBuilder/catalogbuilder/scripts/intake-uda-cmip.csv"
 }
